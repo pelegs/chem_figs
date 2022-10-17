@@ -1,0 +1,14 @@
+\documentclass[a4paper]{article}
+\usepackage{chemfig}
+\begin{document}
+\hspace{10em}
+\chemfig{H_{3}C-@{n0}C(-[:30,0.35,,,draw=none]\scriptstyle\color{red}\delta+)(-[:90]H)(-[-90]H)-[@{a2}]@{a3}X(-[:30,0.35,,,draw=none]\scriptstyle\color{blue}\delta{-})}
+\par
+\vspace{1ex}\hspace{17em}
+\chemfig{@{a1}Nu}
+\chemmove[-stealth,line width=0.8pt]{
+	\draw[red,shorten >=1pt,shorten <=2pt](a1.180)..controls+(160:2em)and+(290:3em)..(n0);
+	\draw[blue,shorten >=2pt,shorten <=2pt](a2)..controls+(85:4em)and+(95:4em)..(a3);
+}
+\chemnameinit{}
+\end{document}

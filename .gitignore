@@ -1,0 +1,5 @@
+tags
+*.aux
+*.log
+*.fdb_latexmk
+*.dvi

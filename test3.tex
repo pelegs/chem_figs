@@ -1,0 +1,19 @@
+\documentclass[a4paper]{article}
+\usepackage{chemfig}
+
+
+\begin{document}
+\begin{center}
+	\schemestart
+	\chemfig{@{Cl1}\charge{180=\:,90=\:,270=\:}{Cl} -[@{b}] @{Cl2}\charge{0=\:,90=\:,270=\:}{Cl}}
+	\arrow
+	2\,\chemleft{[} \charge{0=\.,90=\:,180=\:,270=\:}{Cl} \chemright{]}
+	\schemestop
+	\chemmove{
+		\draw[-{Stealth[left]}, shorten >=3pt,shorten <=2pt]
+		(b) ..controls +(-90:7mm) and +(-90:7mm) .. (Cl1) ;
+		\draw[-{Stealth[left]}, shorten >=3pt,shorten <=2pt]
+		(b) ..controls +(90:7mm) and +(90:7mm) .. (Cl2) ;
+	}
+\end{center}
+\end{document}

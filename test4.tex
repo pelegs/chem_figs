@@ -1,0 +1,56 @@
+\documentclass[border=1cm]{standalone}
+\usepackage{chemfig,chemmacros}
+\setchemfig{
+	fixed length=false,
+	double bond sep=0.35700em,  % 'Bond Spacing'
+	bond style={line width=0.06642em},
+	atomsep=1.78500em,    % 'Fixed Length'
+}
+\makeatletter
+\def\Hv@scale{.95}
+\makeatother
+\DeclareMathAlphabet{\foo}{OT1}{phv}{m}{n}
+\renewcommand*\printatom[1]{\ensuremath{\foo{#1}}}
+
+\tikzset{
+	el/.style={blue, -stealth, shorten >=3pt, shorten <=5pt},
+	box/.style={-, #1, very thick, rounded corners, fill=#1, fill opacity=0.2},
+}
+
+\begin{document}
+\begin{centering}
+\schemestart
+\chemfig{-[:30](=[:90]O)-[:330]O-[:30](-[:330])=[:90]@{O1}\charge{0=\:}{O}}
+\arrow{->[$\chemfig{@{H1}H^{\fplus}}$][][3pt]}
+\chemfig{-[:30](=[:90]O)-[:330]O-[:30]@{C1}(-[:330])=[@{b1}:90]@{O2}{\chemabove[0pt]{O}{\fplus}}-[1,0.8]H}
+\arrow{->[][$\chemfig{@{O3}\charge{180=\:}{O}(-[1,0.8]H)-[-1,0.8]R}$][3pt]}
+\chemfig{-[:30](=[:90]O)-[:330]@{O5}\charge{270=\:}{O}-[:30](-[:330])(-[:270]@{O6}\chembelow{O}{\fplus}([:330,0.8]-R)-[@{b2}:210,0.8]@{H2}H)-[:90]\charge{180=\:}{O}H}
+\arrow{->[]}[270]
+\chemfig{-[:30](=[:90]O)-[:330]@{O7}\chembelow[1pt]{\chemabove{O}{\fplus}}{H}-[@{b3}:30](-[:330])(-[:270]O([:330,0.8]-R))-[@{b4}:90]@{O8}\charge{180=\:}{O}H}
+\arrow{->[]}[180]
+\chemfig{-[:30](=[:90]O)-[:330]OH}
+\+{,,2em}
+\chemfig{-[:30](=[:90]@{O9}\chemabove{O}{\fplus}-[@{b5}:45,0.8]H)-[:330]OR}
+\arrow{->[]}[180]
+\chemfig{-[:30](=[:90]@{AcidCarbonyl}O)-[:330]OH}
+\+{,,2em}
+\chemfig{-[:30](=[:90]@{EsterCarbonyl}O)-[:330]OR}
+\+{,,2em}
+\chemfig{H^{\fplus}}
+\schemestop
+\chemmove{
+	\draw[el] (O1) ..controls +(0:1cm) and +(180:1cm) .. (H1) ;
+	\draw[el] (b1) ..controls +(0:7mm) and +(0:7mm) .. (O2) ;
+	\draw[el] (O3) ..controls +(180:7mm) and +(0:7mm) .. (C1) ;
+	\draw[el] (O5) ..controls +(270:7mm) and +(90:7mm) .. (H2) ;
+	\draw[el, shorten >=1pt] (b2) ..controls +(90:5mm) and +(135:5mm) .. (O6) ;
+	\draw[el] (b3) ..controls +(270:7mm) and +(330:3mm) .. (O7) ;
+	\draw[el] (O8) ..controls +(180:7mm) and +(180:7mm) .. (b4) ;
+	\draw[el] (b5) ..controls +(0:5mm) and +(0:5mm) .. (O9) ;
+}
+\tikz[overlay, remember picture, blend mode=multiply]{
+	\draw[box={red}] ($(AcidCarbonyl)+(-1.5cm,5mm)$) rectangle node[below, yshift=-1.5cm, text opacity=1] {Acetic acid} ($(AcidCarbonyl)+(1.5cm,-2cm)$);
+	\draw[box={orange}] ($(EsterCarbonyl)+(-1cm,5mm)$) rectangle node[below, yshift=-1.5cm, text opacity=1] {Ester} ($(EsterCarbonyl)+(1.5cm,-2cm)$);
+}
+\end{centering}
+\end{document}
